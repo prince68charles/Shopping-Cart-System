@@ -10,7 +10,7 @@ public class Order {
     LocalDate orderTime;
 
 
-    Order(String orderId, Customer customer, List<CartItem> itmes, LocalDate orderTime) {
+    public Order(String orderId, Customer customer, List<CartItem> itmes, LocalDate orderTime) {
 
         this.orderId = orderId;
         this.customer = customer;

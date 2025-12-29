@@ -6,7 +6,7 @@ public class CartItem extends Product{
     int quantity;
 
 
-    CartItem(Product product, int quantity) {
+    public CartItem(Product product, int quantity) {
         super(product.name, product.price, product.category, product.stockQuantity);
 
         this.product = product;

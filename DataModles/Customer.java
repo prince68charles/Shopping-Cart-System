@@ -9,7 +9,7 @@ public class Customer {
 
 
 
-    Customer(String id, String name, String email, MembershipLevel level) {
+    public Customer(String id, String name, String email, MembershipLevel level) {
 
         this.id= id;
         this.name = name;
@@ -19,8 +19,18 @@ public class Customer {
 
     }
 
+    public String getId() {return this.id;}
+    public String getName() {return this.name;}
+    public String getEmail() {return this.email;}
+    public MembershipLevel getLevel() {return this.level;}
 
-    enum MembershipLevel {BASIC, SILVER, GOLD;}
+    public enum MembershipLevel {
 
+        BASIC,
+        SILVER,
+        GOLD;
 
+    }
 }
+
+
