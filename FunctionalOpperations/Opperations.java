@@ -1,14 +1,15 @@
 package FunctionalOpperations;
 
 import DataModles.CartItem;
-
 import java.util.function.Function;
-import java.util.function.BiFunction;
+;
 
-public class Opperations {
-
-
+public interface Opperations {
 
 
+   Function<CartItem, Double> getTotalPrice = product -> product.getPrice() * product.getQuantity();
 
+
+
+   
 }

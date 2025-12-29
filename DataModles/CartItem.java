@@ -1,17 +1,21 @@
 package DataModles;
 
-public class CartItem {
+public class CartItem extends Product{
 
     Product product;
     int quantity;
 
 
     CartItem(Product product, int quantity) {
+        super(product.name, product.price, product.category, product.stockQuantity);
 
         this.product = product;
         this.quantity = quantity;
 
     }
+
+    public Product getProduct() {return this.product;}
+    public int getQuantity() {return this.quantity;}
 
 
 

@@ -19,10 +19,10 @@ public class Product {
 
     }
 
-    String getName() {return this.name;}
-    double getPrice() {return this.price;}
-    String getCategory() {return this.category;}
-    int getStockQuantity() {return this.stockQuantity;}
+    public String getName() {return this.name;}
+    public double getPrice() {return this.price;}
+    public String getCategory() {return this.category;}
+    public int getStockQuantity() {return this.stockQuantity;}
 
 
 
