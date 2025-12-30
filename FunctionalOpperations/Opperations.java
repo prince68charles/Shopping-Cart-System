@@ -1,9 +1,11 @@
 package FunctionalOpperations;
-
 import DataModles.CartItem;
 
+import java.time.LocalDate;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import DataModles.Order;
 import DataModles.Product;
 import DataModles.Customer;
 
@@ -53,9 +55,50 @@ public interface Opperations {
 
     };
 
+    //Order gets free shipping if over 100 dollars
+    Predicate<Order> freeShipping = order -> order.getItems().
+            stream().
+            mapToDouble(CartItem::getPrice).sum() >= 100;
 
 
-    
+
+    Predicate<Customer> isGoldMember = customer -> customer.getLevel().equals(Customer.MembershipLevel.GOLD);
+
+
+    Predicate<Customer> expressShipping = customer -> customer.getLevel().equals(Customer.MembershipLevel.GOLD);
+
+
+    Predicate<String> valdiateCSVLines = lines ->
+            lines != null
+            && !lines.isBlank()
+            && lines.split(",").length ==4;
+
+
+    //Check if order is valid to write to file
+    Predicate<String> isValidOrderRecord = lines -> {
+
+        if(lines == null || lines.isBlank()) return false;
+
+        String[] parts = lines.split(",");
+
+        if(parts.length != 4 ) return false;
+
+        if (parts[0].isBlank()) return false;
+        if (!parts[1].contains("@")) return false;
+
+        try {
+
+            LocalDate.parse(parts[3]);
+
+        }
+        catch (Exception e) {
+            
+            return false;
+        }
+
+        return true;
+
+    };
 
 
 }
