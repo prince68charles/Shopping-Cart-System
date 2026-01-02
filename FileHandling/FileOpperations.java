@@ -9,18 +9,20 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 
+
 public class FileOpperations {
 
     public static class FileReading implements Opperations {
 
         //This can act as a reader for both customers and products
-        Function<File, List<String> readFromCSV = file -> {
+        Function<File, List<String>> readFromCSV = file -> {
 
-          try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
-              return reader.lines().toList();
-          }
-          catch (IOException e) {throw new RuntimeException(e);}
+                return reader.lines().toList();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         };
     }
 
@@ -28,22 +30,24 @@ public class FileOpperations {
 
         Consumer<Product> productWrite = product -> {
 
-            try (FileWriter productWriter = new FileWriter("products.txt", true)){
+            try (FileWriter productWriter = new FileWriter("products.txt", true)) {
                 productWriter.write(productToCSV.apply(product));
                 productWriter.write("\n");
 
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            catch(IOException e){throw new RuntimeException(e);}
         };
 
         //Store order by ID
         Consumer<Order> orderWrite = order -> {
 
-            try(FileWriter orderWriter = new FileWriter("order_history.txt", true)) {
+            try (FileWriter orderWriter = new FileWriter("order_history.txt", true)) {
                 orderWriter.write(orderToCSv.apply(order));
                 orderWriter.write("\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            catch (IOException e) {throw new RuntimeException(e);}
 
         };
 
@@ -53,12 +57,14 @@ public class FileOpperations {
 
                 products.stream().map(productToCSV).
                         forEach(line -> {
-                            try {productsWriter.write(line + "\n");
-                            } catch (IOException e) {throw new RuntimeException(e);}
+                            try {
+                                productsWriter.write(line + "\n");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
 
                         });
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
 
                 throw new RuntimeException(e);
             }
@@ -66,9 +72,6 @@ public class FileOpperations {
         });
 
     }
-
-
-
 }
 
 
