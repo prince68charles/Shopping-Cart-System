@@ -20,5 +20,10 @@ public class Order {
 
     }
 
+    public String getOrderId() {return this.orderId;}
+    public Customer getCustomerInfo() {return this.customer;}
+    public List<CartItem> getItems() {return this.items;}
+    public LocalDate getOrderTime() {return this.orderTime;}
+
 
 }
