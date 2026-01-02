@@ -1,6 +1,5 @@
 package FunctionalOpperations;
 import DataModles.CartItem;
-
 import java.time.LocalDate;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -8,6 +7,8 @@ import java.util.function.Predicate;
 import DataModles.Order;
 import DataModles.Product;
 import DataModles.Customer;
+
+
 
 public interface Opperations {
 
@@ -33,6 +34,10 @@ public interface Opperations {
                     String.valueOf(product.getStockQuantity())
             );
 
+    //Store by order ID
+    Function<Order, String> orderToCSv = order ->
+            String.join(",",
+                    order.getOrderId());
 
     BiFunction<Customer, Double, Double> applyPointsToMember = ((customer, price) -> {
 
@@ -92,7 +97,7 @@ public interface Opperations {
 
         }
         catch (Exception e) {
-            
+
             return false;
         }
 
