@@ -5,8 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-
+import DataModles.Order;
+import java.util.Optional;
 public class DataGathering {
 
 
@@ -54,5 +54,14 @@ public class DataGathering {
                 product.getStockQuantity() < 10)
                 .toList();
 
+    }
+
+    public static List<Product> productsPurchased(List<Order> orders) {
+
+        return orders.stream().
+                flatMap(order ->
+                        order.getItems().stream()
+                        .map(CartItem::getProduct))
+                        .toList();
     }
 }
